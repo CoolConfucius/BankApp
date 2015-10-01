@@ -1,0 +1,61 @@
+extends layout
+
+block content
+  div.container
+    div.row
+      div.col-sm-6.col-md-4.col-md-offset-4
+        #user
+          h1.text-center.login-title Welcome #{user.firstName}. Check your details below:
+            div.signup-wall
+              ul.user-details
+                li Username :    #{user.username}
+                li Email    :    #{user.email}
+                li First Name :    #{user.firstName} 
+                li Last Name :    #{user.lastName}
+                li Checking :    #{user.balance}
+                li Savings :    #{user.savings}
+            br
+            p
+              a(href='/transactions', class='text-center') See Transactions
+            p
+              a(href='/accounts', class='text-center') Go to Accounts
+            a(href='/signout', class='text-center new-account') Sign Out
+
+  div.container
+    div.row
+      div.col-sm-6.col-md-8.col-md-offset-2
+        h1.text-center.login-title Transfer Funds  
+          div.signup-wall
+            div.row
+              div.col-md-6
+                form(class='form-signin', action='/deposit', method='POST')                            
+                  input(type='number', name='deposit', class='form-control', placeholder='0',required, step="0.01")
+                  button(class='btn btn-lg btn-primary btn-block', type='submit') Deposit to Checking
+                  span.clearfix
+              div.col-md-6
+                form(class='form-signin', action='/withdraw', method='POST')                            
+                  input(type='number', name='withdraw', class='form-control', placeholder='0',required, step="0.01")
+                  button(class='btn btn-lg btn-primary btn-block', type='submit') Withdraw from Checking
+                  span.clearfix   
+            div.row
+              div.col-md-6
+                form(class='form-signin', action='/depositSave', method='POST')                            
+                  input(type='number', name='depositSave', class='form-control', placeholder='0',required, step="0.01")
+                  button(class='btn btn-lg btn-primary btn-block', type='submit') Deposit to Savings
+                  span.clearfix
+              div.col-md-6
+                form(class='form-signin', action='/withdrawSave', method='POST')                            
+                  input(type='number', name='withdrawSave', class='form-control', placeholder='0',required, step="0.01")
+                  button(class='btn btn-lg btn-primary btn-block', type='submit') Withdraw from Savings
+                  span.clearfix
+            div.row  
+              div.col-md-6
+                form(class='form-signin', action='/checkSave', method='POST')                            
+                  input(type='number', name='checkSave', class='form-control', placeholder='0',required, step="0.01")
+                  button(class='btn btn-lg btn-primary btn-block', type='submit') Transfer from Checking to Savings
+                  span.clearfix    
+              div.col-md-6
+                form(class='form-signin', action='/saveCheck', method='POST')                            
+                  input(type='number', name='saveCheck', class='form-control', placeholder='0',required, step="0.01")
+                  button(class='btn btn-lg btn-primary btn-block', type='submit') Transfer from Savings to Checking
+                  span.clearfix      

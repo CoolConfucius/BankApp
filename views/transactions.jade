@@ -1,0 +1,16 @@
+extends layout
+
+block content
+  div.container
+    div.row
+      div.col-sm-6.col-md-4.col-md-offset-4
+        #user
+          h1.text-center.login-title Welcome #{user.firstName}. Check your transactions below:
+            div.signup-wall
+              ul.user-details                
+                each val, index in user.transactions
+                  li= index + " : " + val.description
+                  li= 'Amount: ' + val.amount
+                  li= val.date.getDate() + '/' + val.date.getMonth() + '/' + val.date.getFullYear()
+            a(href='/home', class='text-center new-account') Go Back
+
